@@ -1,12 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./style/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="./style/style.css" />
 </head>
 <body>
-    
-    <script src="./script/script.js"></script>
+  <div class="container">
+    <h1>Personal Expense Tracker</h1>
+
+    <div class="totals">
+      <div class="balance">Balance: <span id="balance">$0.00</span></div>
+      <div class="income">Income: <span id="income">$0.00</span></div>
+      <div class="expense">Expense: <span id="expense">-$0.00</span></div>
+    </div>
+
+    <form id="transaction-form">
+      <input type="text" id="description" placeholder="purpose" required />
+      <input type="number" id="amount" placeholder="Amount used for expenses" required />
+      <button type="submit"> Add Transaction</button>
+    </form>
+
+    <div class="filters">
+      <button data-filter="all" class="filter active">All</button>
+      <button data-filter="income" class="filter">Income</button>
+      <button data-filter="expense" class="filter">Expense</button>
+    </div>
+
+    <ul id="transaction-list" class="transactions"></ul>
+
+    <div class="chart-container">
+      <canvas id="expenseChart"></canvas>
+    </div>
+  </div>
+
+  <script src="./script/script.js"></script>
+ 
 </body>
 </html>
