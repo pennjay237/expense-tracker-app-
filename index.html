@@ -21,12 +21,14 @@
       <input type="number" id="amount" placeholder="Amount used for expenses" required />
       <button type="submit"> Add Transaction</button>
     </form>
-
     <div class="filters">
-      <button data-filter="all" class="filter active">All</button>
-      <button data-filter="income" class="filter">Income</button>
-      <button data-filter="expense" class="filter">Expense</button>
+      <ul class="filter-list">
+        <li><button class="filter active" data-filter="all">All</button></li>
+        <li><button class="filter" data-filter="income">Income</button></li>
+        <li><button class="filter" data-filter="expense">Expense</button></li>
+      </ul>
     </div>
+    
 
     <ul id="transaction-list" class="transactions"></ul>
 
