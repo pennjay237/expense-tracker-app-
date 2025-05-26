@@ -41,16 +41,19 @@
   
   .balance {
     background: #c8e5e9;
+    flex-grow: 1;
   }
   
   .income {
     background: #d9f0db;
     color: green;
+    flex-grow: 1;
   }
   
   .expense {
     background: #e9d6d9;
     color: red;
+    flex-grow: 1;
   }
   
   form {
@@ -156,6 +159,7 @@
     .totals {
       flex-direction: column;
       gap: 10px;
+      display: flex;
     }
   
     .filters {
