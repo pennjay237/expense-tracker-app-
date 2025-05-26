@@ -37,6 +37,9 @@
     padding: 10px;
     border-radius: 8px;
     margin: 0 5px;
+    border: solid;
+    flex-grow: 1;
+    min-width: 30%;
   }
   
   .balance {
