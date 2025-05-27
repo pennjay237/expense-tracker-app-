@@ -9,8 +9,10 @@ const filterButtons = document.querySelectorAll(".filter");
 
 let transactions = loadTransactions();
 let currentFilter = "all";
+let expenseChart = null; // Global chart reference
 
 form.addEventListener("submit", addTransaction);
+
 filterButtons.forEach(button => {
   button.addEventListener("click", () => {
     document.querySelector(".filter.active").classList.remove("active");
@@ -56,6 +58,7 @@ function deleteTransaction(id) {
 function renderAll() {
   updateTotals();
   renderTransactions();
+  updateChart();
 }
 
 function renderTransactions() {
@@ -91,7 +94,7 @@ function renderTransactions() {
     const br = document.createElement("br");
 
     const spanAmount = document.createElement("span");
-    spanAmount.textContent = (tx.amount >= 0 ? "+" : "–") + "$" + Math.abs(tx.amount).toFixed(2);
+    spanAmount.textContent = (tx.amount >= 0 ? "+" : "-") + "XAF" + Math.abs(tx.amount).toFixed(2);
 
     const dateDiv = document.createElement("div");
     dateDiv.className = "transaction-date";
@@ -125,9 +128,43 @@ function updateTotals() {
 
   const balance = income + expense;
 
-  balanceEl.textContent = "$" + balance.toFixed(2);
-  incomeEl.textContent = "+$" + income.toFixed(2);
-  expenseEl.textContent = "-$" + Math.abs(expense).toFixed(2);
+  balanceEl.textContent = "XAF" + balance.toFixed(2);
+  incomeEl.textContent = "+XAF" + income.toFixed(2);
+  expenseEl.textContent = "-XAF" + Math.abs(expense).toFixed(2);
+}
+
+function updateChart() {
+  const income = transactions.filter(tx => tx.amount > 0)
+    .reduce((sum, tx) => sum + tx.amount, 0);
+  const expense = transactions.filter(tx => tx.amount < 0)
+    .reduce((sum, tx) => sum + Math.abs(tx.amount), 0);
+
+  const ctx = document.getElementById("expenseChart").getContext("2d");
+
+  if (expenseChart) {
+    expenseChart.data.datasets[0].data = [income, expense];
+    expenseChart.update();
+  } else {
+    expenseChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: ["Income", "Expense"],
+        datasets: [{
+          label: "Transactions",
+          data: [income, expense],
+          backgroundColor: ["#4CAF50", "#F44336"]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    });
+  }
 }
 
 function saveTransactions() {
@@ -140,4 +177,3 @@ function loadTransactions() {
 }
 
 renderAll();
-    

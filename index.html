@@ -17,10 +17,11 @@
     </div>
 
     <form id="transaction-form">
-      <input type="text" id="description" placeholder="purpose" required />
-      <input type="number" id="amount" placeholder="Amount used for expenses" required />
-      <button type="submit"> Add Transaction</button>
+      <input type="text" id="description" placeholder="Purpose" required />
+      <input type="number" id="amount" placeholder="Amount (positive for income, negative for expense)" required />
+      <button type="submit">Add Transaction</button>
     </form>
+
     <div class="filters">
       <ul class="filter-list">
         <li><button class="filter active" data-filter="all">All</button></li>
@@ -28,7 +29,6 @@
         <li><button class="filter" data-filter="expense">Expense</button></li>
       </ul>
     </div>
-    
 
     <ul id="transaction-list" class="transactions"></ul>
 
@@ -37,7 +37,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./script/script.js"></script>
- 
 </body>
 </html>
