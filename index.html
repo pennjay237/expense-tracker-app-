@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h1>Personal Expense Tracker</h1>
-    <h3> Remember </h3>
+    <h3>Remember</h3>
     <h2>"Track Smart. Spend Wise. Live Free."</h2>
 
     <div class="totals">
@@ -20,7 +20,8 @@
 
     <form id="transaction-form">
       <input type="text" id="description" placeholder="Purpose" required />
-      <input type="number" id="amount" placeholder="Amount (positive for income, negative for expense)" required />
+      <input type="number" id="amount" placeholder="Amount (positive or negative)" required />
+      <input type="date" id="date" required />
       <button type="submit">Add Transaction</button>
     </form>
 

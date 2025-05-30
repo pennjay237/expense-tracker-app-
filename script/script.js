@@ -1,6 +1,7 @@
 const form = document.getElementById("transaction-form");
 const descriptionInput = document.getElementById("description");
 const amountInput = document.getElementById("amount");
+const dateInput = document.getElementById("date");
 const transactionList = document.getElementById("transaction-list");
 const balanceEl = document.getElementById("balance");
 const incomeEl = document.getElementById("income");
@@ -9,7 +10,7 @@ const filterButtons = document.querySelectorAll(".filter");
 
 let transactions = loadTransactions();
 let currentFilter = "all";
-let expenseChart = null; // Global chart reference
+let expenseChart = null;
 
 form.addEventListener("submit", addTransaction);
 
@@ -28,9 +29,10 @@ function addTransaction(event) {
 
   const description = descriptionInput.value.trim();
   const amount = parseFloat(amountInput.value);
+  const date = dateInput.value;
 
-  if (description === "" || isNaN(amount)) {
-    alert("Please enter a valid description and amount.");
+  if (description === "" || isNaN(amount) || !date) {
+    alert("Please enter a valid description, amount, and date.");
     return;
   }
 
@@ -38,7 +40,7 @@ function addTransaction(event) {
     id: Date.now(),
     description,
     amount,
-    date: new Date().toLocaleDateString()
+    date
   };
 
   transactions.push(newTransaction);
@@ -47,6 +49,7 @@ function addTransaction(event) {
 
   descriptionInput.value = "";
   amountInput.value = "";
+  dateInput.value = "";
 }
 
 function deleteTransaction(id) {
